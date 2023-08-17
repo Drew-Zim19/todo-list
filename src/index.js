@@ -4,7 +4,7 @@ import Task from './objects.js';
 // const date = toDate(new Date(2014, 1, 11, 11, 30, 30));
 // console.log(date);
 
-let task1 = new Task('fred');
+let task1 = new Task('fred', 'descriptionTHING');
 console.log(task1);
 console.log(task1.title);
-console.log(task1.priority);
+console.log(task1.description);

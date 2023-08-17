@@ -10,15 +10,15 @@ export default class Task {
         return this._title;
     }
     get description(){
-        return this.description;
+        return this._description;
     }
     get dueDateTime(){
-        return this.dueDateTime;
+        return this._dueDateTime;
     }
     get priority(){
         return this._priority;
     }
     get isComplete(){
-        return this.isComplete;
+        return this._isComplete;
     }
 }
