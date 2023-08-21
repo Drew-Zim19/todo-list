@@ -27,13 +27,11 @@ export function addProjectLoad(){
         if(projectName == ''){
             alert("Please input a valid project name.");
         }
-        else{
+
 
             //create a new project object with the title input into the form
-            let project = new Project(projectName);
             let projectNameLink = document.createElement("p");
             projectNameLink.innerHTML = projectName;
-            projectNameLink.addEventListener("click", renderProjectTitle(project));
             let projectContainerDiv = document.getElementsByClassName("projectContainer")[0];
             projectContainerDiv.appendChild(projectNameLink);
 
@@ -42,7 +40,6 @@ export function addProjectLoad(){
             let addProject = document.getElementById("addProjectLink");
             addProject.classList.remove("hidden");
             formField.remove();
-        }
         
     });
 
@@ -59,11 +56,19 @@ export function addProjectLoad(){
   
 }
 
-export function renderProjectTitle(project){
+export function renderProjectTitle(projectName){
    
     const mainContentContainer = document.getElementById("mainContent");
     mainContentContainer.replaceChildren();
     let projectHeader = document.createElement('h4');
-    projectHeader.innerHTML = project.projectTitle;
+    projectHeader.innerHTML = projectName;
     mainContentContainer.appendChild(projectHeader);
 }
+
+const projectContainer = document.getElementsByClassName("projectContainer")[0];
+projectContainer.addEventListener("click", (event) => {
+    if(event.target.innerHTML != 'Add Project' && event.target.classList != 'projectContainer'){
+        renderProjectTitle(event.target.innerHTML);
+    }
+
+});
