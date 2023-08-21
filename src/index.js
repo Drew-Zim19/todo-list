@@ -1,5 +1,5 @@
 import toDate from 'date-fns/toDate';
-import Project from './objects.js';
+import Task from './objects.js';
 import { addProjectLoad } from './addProject.js';
 
 //add project button on left pane

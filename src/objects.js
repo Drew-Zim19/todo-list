@@ -1,6 +1,6 @@
-export default class Project {
-    constructor(projectTitle, taskTitle, description, dueDateTime, priority){
-        this._projectTitle = projectTitle;
+export default class Task {
+    constructor(taskTitle, description, dueDateTime, priority){
+        
         this._taskTitle = taskTitle;
         this._description = description;
         this._dueDateTime = dueDateTime;
@@ -23,7 +23,5 @@ export default class Project {
     get isComplete(){
         return this._isComplete;
     }
-    get projectTitle(){
-        return this._projectTitle;
-    }
+   
 }
