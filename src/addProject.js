@@ -1,3 +1,5 @@
+import Project from './objects.js';
+
 export function addProjectLoad(){
    let container = document.getElementsByClassName("sidebar")[0];
    let formField = document.createElement('form'); 
@@ -16,10 +18,35 @@ export function addProjectLoad(){
     addButton.setAttribute('class', 'addProjectButton');
     addButton.setAttribute('type', 'submit');
     formField.appendChild(addButton);
-    addButton.addEventListener('click', () => {
-        
 
+    //add button functionality to create p tag in side bar with title
+
+    addButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        let projectName = document.getElementsByClassName("projectNameForm")[0].value;
+        if(projectName == ''){
+            alert("Please input a valid project name.");
+        }
+        else{
+
+            //create a new project object with the title input into the form
+            let project = new Project(projectName);
+            let projectNameLink = document.createElement("p");
+            projectNameLink.innerHTML = projectName;
+            projectNameLink.addEventListener("click", renderProjectTitle(project));
+            let projectContainerDiv = document.getElementsByClassName("projectContainer")[0];
+            projectContainerDiv.appendChild(projectNameLink);
+
+            //make the add project button re-appear then remove the project name form
+
+            let addProject = document.getElementById("addProjectLink");
+            addProject.classList.remove("hidden");
+            formField.remove();
+        }
+        
     });
+
+    //cancel button functionality when a user wants to cancel putting in a project
     let cancelButton = document.createElement('button');
     cancelButton.innerHTML = 'Cancel';
     cancelButton.addEventListener('click', () => {
@@ -30,4 +57,13 @@ export function addProjectLoad(){
     formField.appendChild(cancelButton);
     container.appendChild(formField);
   
+}
+
+export function renderProjectTitle(project){
+   
+    const mainContentContainer = document.getElementById("mainContent");
+    mainContentContainer.replaceChildren();
+    let projectHeader = document.createElement('h4');
+    projectHeader.innerHTML = project.projectTitle;
+    mainContentContainer.appendChild(projectHeader);
 }

@@ -1,13 +1,15 @@
-export default class Task {
-    constructor(title, description, dueDateTime, priority){
-        this._title = title;
+export default class Project {
+    constructor(projectTitle, taskTitle, description, dueDateTime, priority){
+        this._projectTitle = projectTitle;
+        this._taskTitle = taskTitle;
         this._description = description;
         this._dueDateTime = dueDateTime;
         this._priority = priority;
         this._isComplete = false;
+        
     }
-    get title(){
-        return this._title;
+    get tastTitle(){
+        return this._taskTitle;
     }
     get description(){
         return this._description;
@@ -20,5 +22,8 @@ export default class Task {
     }
     get isComplete(){
         return this._isComplete;
+    }
+    get projectTitle(){
+        return this._projectTitle;
     }
 }
