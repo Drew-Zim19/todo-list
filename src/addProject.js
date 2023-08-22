@@ -72,7 +72,8 @@ const projectContainer = document.getElementsByClassName("projectContainer")[0];
 projectContainer.addEventListener("click", (event) => {
     if(event.target.innerHTML != 'Add Project' && event.target.classList != 'projectContainer'){
         renderProjectTitle(event.target.innerHTML);
-        renderTaskForm();
+        renderAddTaskButton();
+        //renderTaskForm();
     }
 
 });
@@ -135,6 +136,46 @@ export function renderTaskForm(){
     priority.appendChild(option3);
 
     taskForm.appendChild(priority);
+    taskForm.setAttribute('id', 'taskForm');
 
+    const addButton = document.createElement('button');
+    addButton.innerHTML = 'Submit';
+    addButton.setAttribute('type', 'submit');
+
+    //Submit button submits data and renders the add task button
+
+    addButton.addEventListener('click', () => {
+        //addTask();
+        taskForm.remove()
+        renderAddTaskButton();
+    });
+
+    //Cancel button removes the task form and renders the add task button
+
+    const cancelButton = document.createElement('button');
+    cancelButton.innerHTML = 'Cancel';
+    cancelButton.addEventListener('click', (event) => {
+        taskForm = document.getElementById("taskForm");
+        taskForm.remove();
+        renderAddTaskButton();
+    });
+
+    taskForm.appendChild(addButton);
+    taskForm.appendChild(cancelButton);
     contentDiv.appendChild(taskForm);
+}
+
+//Render task button renders only the task button on the dom main content container
+
+export function renderAddTaskButton(){
+     var divContainer = document.getElementById("mainContent");
+     const addTask = document.createElement('button');
+     addTask.innerHTML = 'Add Task';
+     addTask.classList.add('addTaskButton');
+
+     addTask.addEventListener('click',() => {
+        renderTaskForm();
+        addTask.remove();
+     });
+     divContainer.appendChild(addTask);
 }
